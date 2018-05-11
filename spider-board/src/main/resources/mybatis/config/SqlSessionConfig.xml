@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- MyBatis DataSource에 대한 설정 및 SQL 정의 xml 에 대한 매핑 spring과 연동시에는 spring 
+	설정에서 DataSource(dbcp) 를 정의한다. -->
+<configuration>
+	<!-- 사용할 클래스에 대한 별칭을 명시한다. <package name="model"/> 패키지 단위로 선언하면 별칭은 소문자로 
+		시작하는 클래스명이 별칭이 된다 -->
+	<typeAliases>
+		<!-- <typeAlias type="model.MemberVO" alias="memberVO"/> <typeAlias type="model.DeptVO" 
+			alias="deptVO"/> <typeAlias type="model.EmpVO" alias="empVO"/> -->
+		<package name="org.kosta.spider.model" />
+	</typeAliases>
+
+	<mappers>
+        <mapper resource="mybatis/config/board.xml" />
+
+	</mappers>
+</configuration>

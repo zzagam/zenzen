@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+    <resultMap type="boardVo" id="boardRM">
+        <result column="id" property="vo.id"/>
+        <result column="name" property="vo.name"/>    
+    </resultMap>
+    <select id="readAllBoardList" resultMap="boardRM">
+        select b.no, b.title, b.time_posted as regdate, b.hits, m.name from spider_board b, spider_member m
+        where b.id=m.id
+    </select>
+    
+    <select id="getTotalCount" resultType="int">
+        select count(*) from spider_board
+    </select>
+    
+    <select id="getPagingList" resultMap="boardRM">
+        select b.no, b.title, m.name, b.regdate, b.hits
+        from (
+            select row_number() over(order by no desc) as rnum, no, title, time_posted as regdate, hits, id 
+            from spider_board
+               )b, spider_member m
+        where b.id=m.id and rnum between #{startRowNumber} and #{endRowNumber}
+        order by no desc
+
+    </select>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
